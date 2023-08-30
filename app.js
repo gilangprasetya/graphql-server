@@ -2,6 +2,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var { graphqlHTTP } = require('express-graphql')
+const { schema, solution } = require('./graphql/todoSchema')
 
 const mongoose = require('mongoose');
 
@@ -24,5 +26,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+app.use('/graphql', graphqlHTTP({
+    schema: schema,
+    rootValue: solution,
+    graphiql: true,
+}))
 
 module.exports = app;
