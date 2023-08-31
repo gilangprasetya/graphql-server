@@ -10,7 +10,12 @@ const mongoose = require('mongoose');
 main().catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/tododb');
+    try {
+        await mongoose.connect('mongodb://127.0.0.1:27017/tododb');
+        console.log("Connected to MongoDB");
+    } catch (error) {
+        console.error("MongoDB connection error:", error);
+    }
 }
 
 var indexRouter = require('./routes/index');

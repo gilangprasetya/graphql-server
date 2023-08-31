@@ -14,7 +14,7 @@ type Todo {
 }
 
 type Query {
-    geTodos: [Todo]
+    getTodos: [Todo]
     getTodo(id: ID!): Todo
 }
 
@@ -36,7 +36,7 @@ type Mutation {
 const solution = {
     getTodos: () => Todo.find(),
     getTodo: ({ id }) => Todo.findById(id),
-    creteTodo: ({ input }) => Todo.create(input),
+    createTodo: ({ input }) => Todo.create(input),
     updateTodo: ({ id, input }) => Todo.findByIdAndUpdate(id, input, { new: true }),
     deleteTodo: ({ id }) => Todo.findByIdAndRemove(id)
 }

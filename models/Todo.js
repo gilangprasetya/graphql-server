@@ -4,7 +4,7 @@ const todoSchema = new Schema({
     title: String,
     complete: {
         type: Boolean,
-        default: false
+        default: false,
     }
 });
 
